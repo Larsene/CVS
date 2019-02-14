@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta property="og:description" content="Retrouvez en un même lieu une synthèse de toute notre production électrique ! Un survol des valeurs vous donne en un coup d'oeil la production site par site. Cool, non ?">
+    <meta property="og:image:secure_url" content="https://www.stalagtic-dev.ovh{{ url_for('static', filename='compteur-centrales-villageoises.jpg')}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Production électrique des Centrales Villageoises du Pays de Saverne">
+    
+    <title>Production électrique des Centrales Villageoises du Pays de Saverne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.min.css')}}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="col-xl-9">
+                <h1>Centrales Villageoises du Pays de Saverne</h1>
+                <p class="lead">Un coup d'oeil sur la production des centrales villageoises du Pays de Saverne !</p>
+            </div>
+            <div class="col-xl-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='green-energy.png') }}"></div>
+                            <div class="col-sm-8 col-md-9">
+                                <p class="production mb-0" data-toggle="tooltip" data-placement="bottom" title="{% for site in Sites %}<b>{{site['Name']}}</b><br>{{site['lifetimeproduction']}} kWh<br> {% endfor %}" data-html="true">{{ Sites_Prod }} kWh</p><small class="mt-0 green">production relevée au&nbsp;{{Update}}</small>
+                                <p>Il s'agit de la production totale de l'ensemble de nos toitures solaires. Pas mal, non ?</p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-0" />
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='power-plant.png')}}"></div>
+                            <div class="col-sm-8 col-md-9">
+                                <p class="production mb-0" data-toggle="tooltip" data-placement="bottom" title="{% for site in Sites %}<b>{{site['Name']}}</b><br>{{site['CO2']}} kg<br> {% endfor %}" data-html="true">{{Sites_CO2}} kg de CO²</p>
+                                <p>Et oui, on a déjà économisé tout cela sur le territoire ! <small>(statistiques solaredge)</small></p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-0" />
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='forest.png')}}"></div>
+                            <div class="col-sm-8 col-md-9">
+                                <p class="production mb-0" data-toggle="tooltip" data-placement="bottom" title="{% for site in Sites %}<b>{{site['Name']}}</b><br>{{site['trees']}} arbres<br> {% endfor %}" data-html="true">{{Sites_Trees}} arbres à planter</p>
+                                <p>La production de CO² économisée représente autant d'arbres plantés, qui absorberaient cette quantité. Bon, ça ne nous empêche pas d'en planter aussi ! <small>(statistiques solaredge)</small></p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-0" />
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='light-bulb.png')}}"></div>
+                            <div class="col-sm-8 col-md-9">
+                                <p class="production mb-0" data-toggle="tooltip" data-placement="bottom" title="{% for site in Sites %}<b>{{site['Name']}}</b><br>{{site['lightbulbs']}} ampoules<br> {% endfor %}" data-html="true">{{Sites_Bulbs}} ampoules allumées 24h.</p>
+                                <p>La production solaire de nos panneaux (depuis leur mise en place), si elle avait été consacrée uniquement à cela, aurait permis d'éclairer {{Sites_Bulbs}} ampoules pendant 24H. <small>(statistiques solaredge)</small></p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-0" />
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='family.png')}}"></div>
+                            <div class="col">
+                                <p class="production mb-0">{{Home_Use}} foyers alimentés</p>
+                                <p class="mb-0">Notre production totale correspond au besoin de {{Home_Use}} foyers, ce durant toute une année. <small class="mb-0"><br />(consommation spécifique uniquement, sans eau chaude ni chauffage, selon les chiffres de l&#39;INES)<br /><br /></small></p>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-0" />
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 col-xl-3 text-center m-auto"><img src="{{ url_for('static', filename='electric-car.png')}}" /></div>
+                            <div class="col">
+                                <p class="production mb-0">{{Car_Power}} kms en Renault Zoé</p>
+                                <p class="mb-0">sur la base d&#39;une consommation moyenne relevée de 20,3 kWh/100 kms sur trajets mixtes. Ce qui représente tout de même {{Car_Planet}} tours de notre Terre...<small class="mb-0"><br />consommation selon les tests de <a href="https://www.adac.de/rund-ums-fahrzeug/tests/stromverbrauch-elektroautos-adac-test/?redirectId=quer.Elektroautos+Ecotest">l&#39;ADAC</a><br /></small></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div><small>Ces chiffres sont récupérés sur nos installations à l&#39;aide de l&#39;API <a href="https://www.solaredge.com/index.php/fr">SolarEdge</a>, et réalisée avec des <a href="www.paysdesaverne.fr">morceaux de chaleur ajoutée</a> de notre territoire</small></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{url_for('static', filename='script.min.js')}}"></script>
+</body>
+
+</html>
